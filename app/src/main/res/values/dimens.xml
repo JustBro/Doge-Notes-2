@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="standard_value">16dp</dimen>
+    <dimen name="folder_name">25sp</dimen>
+    <dimen name="item_folder_img_size">90dp</dimen>
+    <dimen name="doge_margin_top">-65dp</dimen>
+    <dimen name="add_btn_margin_top">-100dp</dimen>
+    <dimen name="fab_size">100dp</dimen>
+    <dimen name="my_elevation">5dp</dimen>
+    <dimen name="my_corner_radius">10dp</dimen>
+    <dimen name="add_btn_margin_right">25dp</dimen>
+</resources>

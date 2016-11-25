@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Doge Notes 2</string>
+
+    <string name="item_folder_img_description">folder img</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="add_btn_dscrp">Кнопка добавления</string>
+    <string name="name_hint">Название</string>
+    <string name="create">Создать</string>
+    <string name="text_hint">Текст заметки</string>
+    <string name="empty_name">Введите имя!</string>
+    <string name="already_exist">Такое имя уже существует, выберите друге имя!</string>
+    <string name="delete_btn">кнопка удаления</string>
+    <string name="note_is_deleted">Удалено!</string>
+    <string name="ellipses">…</string>
+    <string name="deselect_btn">отменить выделение</string>
+</resources>
