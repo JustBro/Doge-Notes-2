@@ -155,33 +155,4 @@ class DbHelper extends SQLiteOpenHelper {
         cv.put(KEY_NOTE_TEXT, text);
         mDb.update(TABLE_NOTES, cv, KEY_ID + " = ?", new String[]{id});
     }
-
-    @SuppressWarnings("unused") //нужен был для проверки на совпадение имен заметок и папок
-    boolean isAlreadyExist(String type, String openFolder, String name) {
-        String column = type.equals(TYPE_FOLDER) ? KEY_FOLDER_NAME : KEY_NOTE_NAME;
-        mCursor = mDb.query(
-                TABLE_NOTES,
-                new String[]{column},
-                KEY_ITEM_TYPE + " = ? and " + KEY_PARENT_FOLDER + " = ?",
-                new String[]{type, openFolder},
-                null, null, null);
-
-        for (int i = 0; i < mCursor.getCount(); i++) {
-            if (mCursor.moveToPosition(i)) {
-                if (mCursor.getString(mCursor.getColumnIndex(column)).equals(name)) {
-                    mCursor.close();
-                    return true;
-                }
-            }
-        }
-
-        mCursor.close();
-        return false;
-    }
-
-    @SuppressWarnings("unused") //использую в мэйн классе, когда нужно почистить базу
-    void cleanDb() {
-        mDb.execSQL("drop table if exists " + TABLE_NOTES);
-        onCreate(mDb);
-    }
 }
