@@ -34,15 +34,9 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mSecondFragment = NotesFragment.newInstance(mOpenFolder);
 
     private ImageView mDeleteBtn;
-    private ImageView  mDeselectBtn;
-
+    private ImageView mDeselectBtn;
     private ImageView mAddFolderBtn;
-    private float mFolderXFrom;
-    private float mFolderYFrom;
-
     private ImageView mAddNoteBtn;
-    private float mNoteXFrom;
-    private float mNoteYFrom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +53,7 @@ public class MainActivity extends AppCompatActivity {
         dogeBtn.startAnimation(animation);
 
         mAddFolderBtn = (ImageView) findViewById(R.id.add_folder);
-        mFolderXFrom = mAddFolderBtn.getTranslationX();
-        mFolderYFrom = mAddFolderBtn.getTranslationY();
-
         mAddNoteBtn = (ImageView) findViewById(R.id.add_note);
-        mNoteXFrom = mAddNoteBtn.getTranslationX();
-        mNoteYFrom = mAddNoteBtn.getTranslationY();
 
         setPresListener(mAddFolderBtn);
         setPresListener(mAddNoteBtn);
@@ -76,12 +65,8 @@ public class MainActivity extends AppCompatActivity {
                 setBtnPressAnimation(dogeBtn, event.getAction());
 
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-
-                    setBtnSlideOutAnimation(mAddFolderBtn, mFolderXFrom, mFolderYFrom,
-                            210, 50, mIsAddBtnsShow);
-                    setBtnSlideOutAnimation(mAddNoteBtn, mNoteXFrom, mNoteYFrom,
-                            50, 210, mIsAddBtnsShow);
-
+                    setBtnSlideOutAnimation(mAddFolderBtn, 210, 50, mIsAddBtnsShow);
+                    setBtnSlideOutAnimation(mAddNoteBtn, 50, 210, mIsAddBtnsShow);
                     mIsAddBtnsShow = !mIsAddBtnsShow;
                 }
                 return true;
@@ -226,17 +211,16 @@ public class MainActivity extends AppCompatActivity {
         btn.startAnimation(animation);
     }
 
-    private void setBtnSlideOutAnimation(View btn, float xFrom, float yFrom,
-                                         float xTo, float yTo, boolean isAddBtnsShow) {
+    private void setBtnSlideOutAnimation(View btn, float xTo, float yTo, boolean isAddBtnsShow) {
         btn.setVisibility(View.VISIBLE);
         if (!isAddBtnsShow) {
-            ObjectAnimator.ofFloat(btn, View.TRANSLATION_X, xFrom, xFrom - xTo).start();
-            ObjectAnimator.ofFloat(btn, View.TRANSLATION_Y, yFrom, yFrom - yTo).start();
+            ObjectAnimator.ofFloat(btn, View.TRANSLATION_X, 0, -xTo).start();
+            ObjectAnimator.ofFloat(btn, View.TRANSLATION_Y, 0, -yTo).start();
             ObjectAnimator.ofFloat(btn, View.SCALE_X, 0, 1).start();
             ObjectAnimator.ofFloat(btn, View.SCALE_Y, 0, 1).start();
         } else {
-            ObjectAnimator.ofFloat(btn, View.TRANSLATION_X, xFrom - xTo, xFrom).start();
-            ObjectAnimator.ofFloat(btn, View.TRANSLATION_Y, yFrom - yTo, yFrom).start();
+            ObjectAnimator.ofFloat(btn, View.TRANSLATION_X, -xTo, 0).start();
+            ObjectAnimator.ofFloat(btn, View.TRANSLATION_Y, -yTo, 0).start();
             ObjectAnimator.ofFloat(btn, View.SCALE_X, 1, 0).start();
             ObjectAnimator.ofFloat(btn, View.SCALE_Y, 1, 0).start();
         }
@@ -244,8 +228,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void hideAddBtns() {
         if (mIsAddBtnsShow) {
-            setBtnSlideOutAnimation(mAddFolderBtn, mFolderXFrom, mFolderYFrom, 210, 50, true);
-            setBtnSlideOutAnimation(mAddNoteBtn, mNoteXFrom, mNoteYFrom, 50, 210, true);
+            setBtnSlideOutAnimation(mAddFolderBtn, 210, 50, true);
+            setBtnSlideOutAnimation(mAddNoteBtn, 50, 210, true);
             mIsAddBtnsShow = false;
         }
     }
