@@ -20,7 +20,6 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    private boolean mIsDogeBtnPressed = false;
     private boolean mIsAddBtnsShow = false;
     private boolean mIsDeleteBtnShow = false;
     private boolean mIsDeselectBtnShow = false;
@@ -83,15 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     setBtnSlideOutAnimation(mAddNoteBtn, mNoteXFrom, mNoteYFrom,
                             50, 210, mIsAddBtnsShow);
 
-                    if (!mIsDogeBtnPressed && !mIsAddBtnsShow) {
-                        mIsDogeBtnPressed = true;
-                        mIsAddBtnsShow = true;
-                    } else if (mIsDogeBtnPressed && !mIsAddBtnsShow) {
-                        mIsAddBtnsShow = true;
-                    } else {
-                        mIsDogeBtnPressed = false;
-                        mIsAddBtnsShow = false;
-                    }
+                    mIsAddBtnsShow = !mIsAddBtnsShow;
                 }
                 return true;
             }
